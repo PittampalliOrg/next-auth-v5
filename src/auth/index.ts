@@ -3,16 +3,26 @@ import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
  
 export const BASE_PATH = '/api/auth';
 
-const authOptions: NextAuthConfig = {
-    providers: [
-        MicrosoftEntraID({
-        clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
-        clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
-        tenantId: process.env.AUTH_MICROSOFT_ENTRA_ID_TENANT_ID,
-      })
-    ],
-    basePath: BASE_PATH,
-    secret: process.env.NEXTAUTH_SECRET,
-};
-
-export const { handlers, signIn, signOut, auth } = NextAuth(authOptions)
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  providers: [
+    MicrosoftEntraID({
+      clientId: process.env.AUTH_MICROSOFT_ENTRA_ID_ID,
+      clientSecret: process.env.AUTH_MICROSOFT_ENTRA_ID_SECRET,
+      tenantId: process.env.AUTH_MICROSOFT_ENTRA_ID_TENANT_ID,
+    }),
+  ],
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token
+      }
+      return token
+    },
+    async session({ session, token, user }) {
+      return {
+        ...session,
+        accessToken: token.accessToken as string
+      }
+    }
+  }
+})
