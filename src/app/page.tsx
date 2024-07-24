@@ -1,15 +1,14 @@
 import { auth } from "@/auth";
 
 import AuthButton from "./AuthButton.server";
+import { NavMenu } from "@/components/NavMenu";
 
 export default async function Home() {
   const session = await auth();
 
   return (
-    <main>
-      <h1 className="text-3xl font-bold">Home Page</h1>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
-      <AuthButton />
-    </main>
+    <>
+    <AuthButton />
+    </>
   );
 }

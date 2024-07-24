@@ -1,10 +1,6 @@
-import "isomorphic-fetch"; // or import the fetch polyfill you installed
-import { Client } from "@microsoft/microsoft-graph-client";
+// pages/api/callGraph.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import { getGraphToken } from "../api/graph/getGraphToken";
-
-import { auth } from "@/auth";
-import { NextResponse } from "next/server";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
