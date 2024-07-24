@@ -1,5 +1,5 @@
 // utils/getGraphToken.ts
-import { msalInstance } from "./msalClient";
+import { msalInstance } from "./authConfig";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
 import { getSession } from "next-auth/react";
 

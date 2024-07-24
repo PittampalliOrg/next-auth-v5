@@ -5,7 +5,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/compon
 import { JSX, SVGProps } from "react";
 
 const menuItems = [
-  { href: "/home", label: "Home" },
+  { href: "/mail", label: "Mail" },
   { href: "/chat", label: "Chat" },
   { href: "/powerbi", label: "Power BI" },
   { href: "/contact", label: "Contact" }
