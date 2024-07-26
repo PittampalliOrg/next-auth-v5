@@ -6,7 +6,7 @@ import { JSX, SVGProps } from "react";
 
 const menuItems = [
   { href: "/", label: "Home" },
-  { href: "/draft", label: "Draft" },
+  { href: "/tasks", label: "Tasks" },
   { href: "/mail", label: "Mail" },
   { href: "/powerbi", label: "Power BI" },
   { href: "/files", label: "Files" }

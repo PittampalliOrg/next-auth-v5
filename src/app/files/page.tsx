@@ -78,7 +78,7 @@ interface GraphResponse {
 }
 
 
-async function getFiles(): Promise<Files[]> {
+async function getFiles(): Promise<DriveItem[]> {
     const session = await auth();
     const res = await fetch("https://graph.microsoft.com/v1.0/me/drive/recent", {
       headers: {

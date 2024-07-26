@@ -3,6 +3,11 @@ import MicrosoftEntraID from "next-auth/providers/microsoft-entra-id"
  
 export const BASE_PATH = '/api/auth';
 
+export const graphqlConfig = {
+  graphqlEndpoint: "https://api.fabric.microsoft.com/v1/workspaces/8986808f-6c68-4a91-b3c4-1a38bfa8d7e1/graphqlapis/0c5175ba-3eb0-4e16-ba31-120722369a4b/graphql"
+};
+
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     MicrosoftEntraID({
@@ -24,5 +29,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         accessToken: token.accessToken as string
       }
     }
-  }
-})
+  },
+  secret: process.env.NEXTAUTH_SECRET as string,
+});
+
+export const loginRequest = {
+  scopes: ["https://analysis.windows.net/powerbi/api/Item.Execute.All","https://analysis.windows.net/powerbi/api/Datamart.ReadWrite.All"]
+};
+
+export const graphConfig = {
+  graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
+};
